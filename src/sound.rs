@@ -1,4 +1,43 @@
+#[cfg(feature = "sound")]
 use blip_buf::BlipBuf;
+
+// stub out the api so we can run without
+#[cfg(not(feature = "sound"))]
+pub struct BlipBuf {
+    samples : u32,
+}
+
+#[cfg(not(feature = "sound"))]
+impl BlipBuf {
+    pub fn new(sample_count: u32) -> BlipBuf {
+        BlipBuf { samples: sample_count }
+    }
+
+    pub fn set_rates(&mut self, _clock_rate: f64, _sample_rate: f64){
+        ()
+    }
+    pub fn clear(&mut self) {
+        ()
+    }
+    pub fn add_delta(&mut self, _clock_time: u32, _delta: i32){
+        ()
+    }
+    pub fn add_delta_fast(&mut self, _clock_time: u32, _delta: i32){
+        ()
+    }
+    pub fn clocks_needed(&self, _sample_count: u32) -> u32 {
+        0
+    }
+    pub fn end_frame(&mut self, _clock_duration: u32){
+        ()
+    }
+    pub fn samples_avail(&self) -> u32 {
+        0
+    }
+    pub fn read_samples(&mut self, _buf: &mut[i16], _stereo: bool) -> usize {
+        0
+    }
+}
 
 const WAVE_PATTERN : [[i32; 8]; 4] = [[-1,-1,-1,-1,1,-1,-1,-1],[-1,-1,-1,-1,1,1,-1,-1],[-1,-1,1,1,1,1,-1,-1],[1,1,1,1,-1,-1,1,1]];
 const CLOCKS_PER_SECOND : u32 = 1 << 22;
