@@ -1,4 +1,7 @@
-#![crate_name = "rboy"]
+extern crate glium;
+extern crate cpal;
+extern crate winit;
+extern crate rboy;
 
 use rboy::device::Device;
 use std::io::{self, Read};
