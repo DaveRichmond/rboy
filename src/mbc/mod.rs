@@ -37,6 +37,12 @@ pub trait MBC : Send {
     }
 }
 
+#[cfg(feature = "embedded")]
+pub fn get_mbc(file: path::PathBuf, skip_checksum: bool) -> StrResult<Box<dyn MBC+'static>> {
+    Err("Unimplemented on embedded")
+}
+
+#[cfg(not(feature = "embedded"))]
 pub fn get_mbc(file: path::PathBuf, skip_checksum: bool) -> StrResult<Box<dyn MBC+'static>> {
     let mut data = vec![];
     File::open(&file).and_then(|mut f| f.read_to_end(&mut data)).map_err(|_| "Could not read ROM")?;

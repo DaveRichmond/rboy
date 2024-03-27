@@ -9,6 +9,7 @@ blip_buf = { version = ">=0.1.3", optional = true }
 
 [features]
 sound = [ "dep:blip_buf" ]
+embedded = []
 
 [lib]
 name = "rboy"
